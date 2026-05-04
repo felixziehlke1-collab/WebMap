@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="referrer" content="origin">
+        <link href="style.css" rel="stylesheet">
+        <link href="leaflet/leaflet.css" type="text/css" rel="stylesheet">
+        <script src="leaflet/leaflet.js"></script>
+        <script src="dialog.js" defer></script>
+        <script src="map.js"></script>
+        <title>Geburtsorte</title>
+    </head>
+
+    <body>
+
+        <div class="screen-margin">
+
+            <h1>Geburtsorte</h1>
+
+        
+            <nav id="nav-box">
+                <button id="b1" onclick="removeMarker(); setMarker(53.3026183, 9.2839423, '<h2>Krankenhaus Zeven</h2>')">Felix</button>
+            </nav>
+
+        </div>
+
+        <dialog id="mydialog">
+          <form method="dialog">
+            <h2><mark><blink>⚠</blink> Externe Inhalte</mark></h2>
+            <p>Auf dieser Seite wird eine interaktive Karte dargestellt. Für den Hintergrund der Karte werden Bilder (Kacheln) benötigt.<br>
+               Diese Kacheln werden von <em>Open Street Map</em> (OSM <a href="https://www.openstreetmap.org/about" target="_blank">https://www.openstreetmap.org/about</a>) heruntergeladen und in die Karte eingebunden.</p>
+            <p><mark>Bitte auf <em>Karte laden</em> klicken um die externen Inhalte anzuzeigen und die Karte zu aktivieren.</mark></p>
+            <button id="okmap">Karte laden</button>
+          </form>
+        </dialog>
+
+
+      <div id="mymap" onclick="removeMarker();"></div>
+
+      <footer>
+        <p><a href="impressum.html">Impressum</a> | <a href="quellen.html">Quellen</a></p>
+      </footer>
+
+    </body>
+</html>

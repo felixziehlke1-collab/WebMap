@@ -1,0 +1,78 @@
+body {
+    font-family: "schrift";
+    font-size: 1.15em;
+    overflow: hidden;
+    margin: 0;
+}
+
+p {
+  margin-top: 2px;
+}
+
+em {
+    font-style: normal;
+    font-weight: 700;
+}
+
+mark {
+    font-size: 1.25em;
+}
+
+h4 {
+  margin-bottom: 0;
+}
+
+button {
+  width: 6em;
+  height: 4em;
+  font-weight: 900;
+}
+
+a:link, a:visited, a:active {
+  color: #343434;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+dialog {
+  border: 5px solid #ccc;
+}
+
+dialog h2 {
+    margin: 0;
+    background-color: yellow;
+}
+
+footer {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+}
+
+blink {
+       animation:         blink 2s steps(20, start) infinite;
+}
+
+       @keyframes blink {
+         to { visibility: hidden; }
+       }
+
+#mymap {
+    width: 100vw;
+    height: 70vh;
+    background-image: url("screenshot.jpg");
+    background-position: center;
+}
+
+.screen-margin {
+    margin: 2em;
+}
+
+.krankenhaus {
+    border: 3px solid red; 
+    padding: 10px;         
+    display: inline-block; 
+}
