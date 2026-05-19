@@ -1,0 +1,188 @@
+/* ==========================================================================
+   1. GLOBALE EINSTELLUNGEN & RESET
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+    
+    /* Der "Sticky-Footer"-Trick: Zwingt den Footer nach ganz unten */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. NAVIGATION (HEADER)
+   ========================================================================== */
+header {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 5%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: #0056b3;
+}
+
+/* ==========================================================================
+   3. HAUPTBEREICH (MAIN) & KACHELN
+   ========================================================================== */
+main {
+    flex: 1; /* Dehnt den Hauptbereich aus und hält den Footer unten */
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 10%;
+    background-color: #fff;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #222;
+}
+
+.intro-text {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.tiles-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 2rem 5%;
+    flex-wrap: wrap; /* Erlaubt automatisches Umbrechen auf kleineren Screens */
+}
+
+.tile {
+    flex: 1;
+    min-width: 250px; /* Breite, ab der die Kacheln umbrechen */
+    max-width: 280px; /* Perfekte Breite für eine 4er-Reihe auf Desktop-Bildschirmen */
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.tile img {
+    width: 100%;
+    height: 180px; /* Leicht verringert für stimmige Proportionen bei 4 Stück */
+    object-fit: cover;
+}
+
+.tile-content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.tile-content h2 {
+    color: #0056b3;
+    font-size: 1.25rem;
+}
+
+/* ==========================================================================
+   4. FOOTER (Exakt wie auf der Kartenseite)
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 1.5rem 5%;
+    background: #333;
+    color: #fff;
+    width: 100%;
+    position: relative;
+    z-index: 1001;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+footer a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   5. RESPONSIVE ANPASSUNGEN
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    
+    nav { 
+        flex-direction: column; 
+        gap: 10px; 
+    }
+    
+    nav ul li { 
+        margin: 0 10px; 
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

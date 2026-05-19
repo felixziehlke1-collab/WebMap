@@ -1,0 +1,145 @@
+/* Grundkonfiguration */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif; 
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.7;
+}
+
+/* Header & Nav */
+header {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 5%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li { margin-left: 20px; }
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+nav ul li a.active {
+    color: #0056b3;
+    border-bottom: 2px solid #0056b3;
+}
+
+/* Hauptinhalt Container */
+.container {
+    background-color: #ffffff;
+    max-width: 900px;
+    width: 95%;
+    margin: 40px auto;
+    padding: 50px;
+    border-radius: 4px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+h1 {
+    color: #2c3e50;                    
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+h2 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-top: 35px;                  
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+p {
+    margin-bottom: 20px;
+    text-align: justify; /* Blocksatz für wissenschaftlichen Look */
+}
+
+ul {
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.references {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 2px solid #3498db;
+    font-size: 0.95rem;
+}
+
+
+footer {
+    text-align: center;
+    padding: 1.5rem 5%;
+    background: #333;
+    color: #fff;
+    width: 100%;
+    position: relative;
+    z-index: 1001;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Copyright links, Links rechts */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto; /* Zentriert den Inhalt bei sehr breiten Bildschirmen */
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+footer a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Mobile Optimierung */
+@media (max-width: 768px) {
+    .container { padding: 25px; margin: 20px auto; }
+    h1 { font-size: 1.8rem; }
+    p { text-align: left; }
+    nav { flex-direction: column; }
+    nav ul { margin-top: 1rem; }
+}

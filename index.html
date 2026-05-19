@@ -1,47 +1,79 @@
-<!DOCTYPE HTML>
-
+<!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <meta name="referrer" content="origin">
-        <link href="style.css" rel="stylesheet">
-        <link href="leaflet/leaflet.css" type="text/css" rel="stylesheet">
-        <script src="leaflet/leaflet.js"></script>
-        <script src="dialog.js" defer></script>
-        <script src="map.js"></script>
-        <title>Geburtsorte</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startseite  | Lebensqualität in Berlin </title>
+    <link rel="stylesheet" href="css/style_index.css">
+</head>
+<body>
 
-    <body>
+    <header>
+        <nav>
+            <div class="logo">Lebensqualität in Berlin</div>
+            <ul>
+                <li><a href="index.html" class="active">Start</a></li>
+                <li><a href="karte.html">Karte</a></li>
+                <li><a href="theorie.html">Theorie</a></li>
+                <li><a href="dokumentation.html">Dokumentation</a></li>
+                <li><a href="statistik.html">Statistik</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <div class="screen-margin">
+    <main>
+        <section class="hero">
+            <h1>Lebensqualität in Berlin</h1>
+            <p class="intro-text">
+                Berlin ist mehr als nur eine Hauptstadt. Erfahren Sie hier alles über die Faktoren, 
+                die das Leben in dieser Metropole prägen – von grünen Oasen bis zur urbanen Infrastruktur.
+            </p>
+        </section>
 
-            <h1>Geburtsorte</h1>
+        <section class="tiles-container">
+            <!-- Kachel 1: Karte -->
+            <a href="karte.html" class="tile">
+                <img src="img/karte.png" alt="Interaktive Karte von Berlin">
+                <div class="tile-content">
+                    <h2>Interaktive Karte</h2>
+                </div>
+            </a>
 
-        
-            <nav id="nav-box">
-                <button id="b1" onclick="removeMarker(); setMarker(53.3026183, 9.2839423, '<h2>Krankenhaus Zeven</h2>')">Felix</button>
-            </nav>
+            <!-- Kachel 2: Theorie -->
+            <a href="theorie.html" class="tile">
+                <img src="img/theorie.png" alt="Theoretische Grundlagen">
+                <div class="tile-content">
+                    <h2>Theorie</h2>
+                </div>
+            </a>
 
+            <!-- Kachel 3: Dokumentation -->
+            <a href="dokumentation.html" class="tile">
+                <img src="img/dokumentation.png" alt="Projektdokumentation">
+                <div class="tile-content">
+                    <h2>Dokumentation</h2>
+                </div>
+            </a>
+
+            <!-- Kachel 4: Statistik -->
+             <a href="statistik.html" class="tile">
+                <img src="img/statistik.png" alt="Statistische Analysen">
+                <div class="tile-content">
+                    <h2>Statistik</h2>
+                </div>
+            </a>
+        </section>
+    </main>
+
+    <footer>
+    <div class="footer-content">
+        <p>Lebensqualität in Berlin</p>
+        <div class="footer-links">
+            <a href="quellen.html">Quellen</a>
+            <a href="impressum.html">Impressum</a>
         </div>
+    </div>
+    </footer>
 
-        <dialog id="mydialog">
-          <form method="dialog">
-            <h2><mark><blink>⚠</blink> Externe Inhalte</mark></h2>
-            <p>Auf dieser Seite wird eine interaktive Karte dargestellt. Für den Hintergrund der Karte werden Bilder (Kacheln) benötigt.<br>
-               Diese Kacheln werden von <em>Open Street Map</em> (OSM <a href="https://www.openstreetmap.org/about" target="_blank">https://www.openstreetmap.org/about</a>) heruntergeladen und in die Karte eingebunden.</p>
-            <p><mark>Bitte auf <em>Karte laden</em> klicken um die externen Inhalte anzuzeigen und die Karte zu aktivieren.</mark></p>
-            <button id="okmap">Karte laden</button>
-          </form>
-        </dialog>
-
-
-      <div id="mymap" onclick="removeMarker();"></div>
-
-      <footer>
-        <p><a href="impressum.html">Impressum</a> | <a href="quellen.html">Quellen</a></p>
-      </footer>
-
-    </body>
+</body>
 </html>

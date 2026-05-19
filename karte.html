@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktive Karte | Lebensqualität in Berlin</title>
+    
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/qgis2web.css">
+    <link rel="stylesheet" href="css/style_karte.css"> 
+</head>
+
+<body>
+
+    <div id="warning-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2>Wichtiger Hinweis</h2>
+            <p>Auf dieser Seite wird eine interaktive Karte dargestellt. Für den Hintergrund der Karte werden Bilder (Kacheln) benötigt.<br>
+               Diese Kacheln werden von<br> <em>OpenStreetMap-Mitwirkende.(2026)</em> (<a href="https://www.openstreetmap.org/about" target="_blank">https://www.openstreetmap.org/about</a>),<br>
+               <em>CARTO(2026)<br></em> (<a href="https://carto.com/about-us/" target="_blank">https://carto.com/about-us/</a>),<br> 
+               <em>Copyright © 2026 Esri und dessen Lizenzgeber</em><br> ( <a href="https://www.esri.com/de-de/home" target="_blank">https://www.esri.com/de-de/home</a>) 
+               heruntergeladen und in die Karte eingebunden.</p>
+            <p>Bitte auf <em>OK</em> klicken um die externen Inhalte anzuzeigen und die Karte zu aktivieren.</p>
+            <button id="accept-warning">OK</button>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">Lebensqualität in Berlin</div>
+            <ul>
+                <li><a href="index.html">Start</a></li>
+                <li><a href="karte.html"class="active">Karte</a></li>
+                <li><a href="theorie.html">Theorie</a></li>
+                <li><a href="dokumentation.html" >Dokumentation</a></li>
+                <li><a href="statistik.html">Statistik</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+    <div id="map" style="width: 100%; height: 85vh; position: relative;"></div>
+
+    <div style="display:none;">
+        <div id="highlights-content" class="map-overlay-card">
+            <h3>Analyse-Highlights</h3>
+            <div class="button-grid-vertical">
+                <button onclick="zoomTo(52.4930, 13.5857, 14)">Höchste Ökonomie</button>
+                <button onclick="zoomTo(52.5034, 13.4136, 15)">Niedrigste Ökonomie</button>
+                <button onclick="zoomTo(52.6026, 13.3504, 15)">Höchster Sozialwert 1</button>
+                <button onclick="zoomTo(52.4690, 13.3612, 14)">Höchster Sozialwert 2</button>
+                <button onclick="zoomTo(52.5173, 13.3907, 15)">Niedrigster Sozialwert</button>
+                <button onclick="zoomTo(52.5440, 13.3760, 15)">Höchste Versorgung</button>
+                <button onclick="zoomTo(52.5530, 13.1367, 15)">Niedrigste Versorgung</button>
+                <button onclick="zoomTo(52.5302, 13.6200, 15)">Höchste Physische Bewertung 1</button>
+                <button onclick="zoomTo(52.4330, 13.4241, 15)">Höchste Physische Bewertung 2</button>
+                <button onclick="showPhysicalInfo()">Niedrigste Physische Bewertung</button>
+                <button onclick="zoomTo(52.5302, 13.6200, 15)">Höchste Gesamtbewertung</button>
+                <button onclick="zoomTo(52.5027, 13.3097, 16)">Niedrigste Gesamtbewertung</button>
+            </div>
+        </div>
+
+        <div id="legend-content-map" class="map-overlay-card legend-card">
+            <h3>Gesamtwert</h3>
+            <div class="legend-list">
+                <div class="legend-row"><img src="legend/Ergebnis_1_5336516.png"> <span>53,30 - 65,20</span></div>
+                <div class="legend-row"><img src="legend/Ergebnis_1_4975335.png"> <span>49,70 - 53,29</span></div>
+                <div class="legend-row"><img src="legend/Ergebnis_1_4724974.png"> <span>47,20 - 49,69</span></div>
+                <div class="legend-row"><img src="legend/Ergebnis_1_4444723.png"> <span>44,40 - 47,19</span></div>
+                <div class="legend-row"><img src="legend/Ergebnis_1_414442.png"> <span>41,00 - 44,39</span></div>
+                <div class="legend-row"><img src="legend/Ergebnis_1_373411.png"> <span>37,30 - 40,99</span></div>
+                <div class="legend-row"><img src="legend/Ergebnis_1_2143730.png"> <span>21,30 - 37,29</span></div>
+             </div>
+        </div>
+    </div>
+</main>
+
+    <footer>
+    <div class="footer-content">
+        <p>Lebensqualität in Berlin</p>
+        <div class="footer-links">
+            <a href="quellen.html">Quellen</a>
+            <a href="impressum.html">Impressum</a>
+        </div>
+    </div>
+    </footer>
+
+
+
+    <script src="js/leaflet.js"></script>
+    <script src="js/Autolinker.min.js"></script>
+    <script src="js/qgis2web_expressions.js"></script>
+    <script src="data/Ergebnis_1.js"></script> 
+    <script src="data/bezirksgrenzen_2.js"></script>
+    <script src="js/qgis_setup.js"></script>
+
+    <script>
+        function zoomTo(lat, lng, zoomLevel) {
+            if (typeof map !== 'undefined') {
+                map.flyTo([lat, lng], zoomLevel, { animate: true, duration: 1.5 });
+            }
+        }
+
+        function showPhysicalInfo() {
+            alert("Im physischen Bereich erhielten insgesamt 27 Planungsräume keine Punkte.");
+        }
+
+        // Diese Funktion wartet, bis qgis_setup.js den Layer fertig hat
+        function initializeCustomControls() {
+    if (typeof map !== 'undefined' && typeof layer_Ergebnis_1 !== 'undefined') {
+        
+        // 1. Basemaps wie gehabt
+        var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        var darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png');
+        var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+
+        // 2. Basemap-Switcher oben rechts (Standard-Position)
+        L.control.layers({"OSM": osmLayer, "Dark": darkLayer, "Satellit": satelliteLayer}, 
+                         {"Daten": layer_Ergebnis_1}, {collapsed: true}).addTo(map);
+
+        // 3. Analyse-Highlights oben links
+        var highlightControl = L.control({position: 'topleft'});
+        highlightControl.onAdd = function() {
+            var div = L.DomUtil.get('highlights-content');
+            div.style.display = 'block';
+            L.DomEvent.disableClickPropagation(div); // Verhindert Karten-Klick beim Button-Drücken
+            return div;
+        };
+        highlightControl.addTo(map);
+
+        // 4. Maßstab unten links
+        L.control.scale({
+            position: 'bottomleft',
+            metric: true,      // Zeigt Meter/Kilometer an
+            imperial: false    // Schaltet Meilen/Feet aus
+        }).addTo(map);
+        
+        // 5. Legende unten links
+        var legendControl = L.control({position: 'bottomleft'});
+        legendControl.onAdd = function() {
+            var div = L.DomUtil.get('legend-content-map');
+            div.style.display = 'block';
+            L.DomEvent.disableScrollPropagation(div);
+            return div;
+        };
+        legendControl.addTo(map);
+
+
+    } else {
+        setTimeout(initializeCustomControls, 100);
+    }
+}
+initializeCustomControls();
+
+document.addEventListener("DOMContentLoaded", function() {
+    var modal = document.getElementById("warning-modal");
+    var acceptBtn = document.getElementById("accept-warning");
+
+    // Funktion zum Auslesen des Cookies
+    function getCookie(name) {
+        var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return v ? v[2] : null;
+    }
+
+    // Funktion zum Setzen des Cookies
+    function setCookie(name, value, days) {
+        var d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = name + "=" + value + ";path=/;expires=" + d.toUTCString();
+    }
+
+    // 1. Prüfen, ob der User den Cookie schon hat
+    if (!getCookie("kartenWarnungGelesen")) {
+        // Cookie fehlt: Modal anzeigen (Klasse 'hidden' entfernen)
+        modal.classList.remove("hidden");
+    }
+
+    // 2. Klick auf den OK-Button
+    acceptBtn.addEventListener("click", function() {
+        // Cookie setzen, gültig für 30 Tage
+        setCookie("kartenWarnungGelesen", "true", 30);
+        
+        // Modal verstecken
+        modal.classList.add("hidden");
+    });
+});
+
+    </script>
+</body>
+</html>

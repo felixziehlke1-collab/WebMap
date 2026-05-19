@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentation | Lebensqualität in Berlin</title>
+    <link rel="stylesheet" href="css/style_dokumentation.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Lebensqualität in Berlin</div>
+            <ul>
+                <li><a href="index.html">Start</a></li>
+                <li><a href="karte.html">Karte</a></li>
+                <li><a href="theorie.html">Theorie</a></li>
+                <li><a href="dokumentation.html" class="active">Dokumentation</a></li>
+                <li><a href="statistik.html">Statistik</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Dokumentation</h1>
+        <p class="subtitle">Methodik und technische Umsetzung des Lebensqualitätsindex</p>
+
+        <section>
+            <h2>1. Datenakquise und Vorbereitung</h2>
+            <p>
+                Die Modellierung stützt sich auf eine Vielzahl heterogener Datenquellen, die zunächst auf eine einheitliche räumliche Bezugsebene (LOR-System, Stand 2021/2023) transformiert werden mussten.
+            </p>
+            <ul>
+                <li><strong>Geodaten:</strong> OpenStreetMap (Points of Interest) und die Geodateninfrastruktur Berlin.</li>
+                <li><strong>Statistische Daten:</strong> Kriminalstatistik (PKS), Arbeitsmarktdaten der Bundesagentur für Arbeit sowie Daten des Amts für Statistik Berlin-Brandenburg.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>2. Geodatenverarbeitung in QGIS</h2>
+            <p>Zur Aggregation der Rohdaten auf die 542 Planungsräume wurden verschiedene GIS-Operationen durchgeführt:</p>
+            <ol>
+                <li><strong>Pufferanalyse:</strong> Erstellung von Einzugsgebieten mit 1.000m Radius für die Grundversorgung.</li>
+                <li><strong>Point-in-Polygon:</strong> Zählung spezifischer Einrichtungen (z.B. Kitas, Schulen) pro Planungsraum.</li>
+                <li><strong>Räumliche Verschneidung:</strong> Berechnung prozentualer Flächenanteile für Grün- und Wasserflächen.</li>
+                <li><strong>Zusammenführung:</strong> Verknüpfung aller Ergebnisse über die eindeutige PLR_ID in einer zentralen Attributtabelle.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>3. Mathematische Modellierung und Gewichtung</h2>
+            <p>
+                Der Index basiert auf einer gewichteten Summation von 22 Indikatoren. Zur Vergleichbarkeit wurde ein Scoring-System entwickelt, das unterschiedliche Einheiten (z.B. Euro/m², Prozent) in einheitliche Punktwerte überführt.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategorie</th>
+                        <th>Anteil</th>
+                        <th>Gewichtungslogik</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ökonomie</td>
+                        <td>26 Pkt.</td>
+                        <td>Mietbelastung vs. Kaufkraft</td>
+                    </tr>
+                    <tr>
+                        <td>Soziales</td>
+                        <td>26 Pkt.</td>
+                        <td>Sicherheit und Freizeitangebot</td>
+                    </tr>
+                    <tr>
+                        <td>Versorgung</td>
+                        <td>30 Pkt.</td>
+                        <td>Erreichbarkeit und Dichte</td>
+                    </tr>
+                    <tr>
+                        <td>Physisch</td>
+                        <td>18 Pkt.</td>
+                        <td>Umweltqualität und Mobilität</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="note">Der maximal erreichbare Gesamtwert (LQI) beträgt 100 Punkte.</p>
+        </section>
+
+        <section>
+            <h2>4. Visualisierung und Output</h2>
+            <p>
+                Das Ergebnis wurde als Choroplethenkarte visualisiert, wobei die Klassifizierung nach natürlichen Unterbrechungen (Jenks) erfolgte. Über einen Export mit <em>qgis2web</em> können Nutzer detaillierte Werte in interaktiven Pop-ups abfragen.
+            </p>
+        </section>
+
+        <section>
+            <h2>5. Kritische Reflexion</h2>
+            <p>
+                Trotz der präzisen Abbildung objektiver Daten muss beachtet werden, dass subjektive Faktoren wie das individuelle Lärmempfinden oder die Kiez-Identität nicht in das Modell einfließen. Zudem konnte aufgrund der Datenlage nur die Existenz, nicht aber der Zustand von Einrichtungen bewertet werden.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+    <div class="footer-content">
+        <p>Lebensqualität in Berlin</p>
+        <div class="footer-links">
+            <a href="quellen.html">Quellen</a>
+            <a href="impressum.html">Impressum</a>
+        </div>
+    </div>
+    </footer>
+
+</body>
+</html>

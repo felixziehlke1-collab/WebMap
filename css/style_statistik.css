@@ -1,0 +1,121 @@
+.statistik-hero {
+    text-align: center;
+    padding: 3rem 5% 1.5rem 5%;
+    background-color: #fff;
+}
+
+/* Äußerer Container für den Viewport-Schutz */
+.table-container-outer {
+    padding: 10px 5% 40px 5%;
+    background-color: #f9f9f9;
+}
+
+/* Erzeugt die Scrollbalken an den Rändern, falls die Excel-Matrix überlappt */
+.table-responsive-wrapper {
+    width: 100%;
+    max-height: 65vh; /* Begrenzt die Höhe, um vertikal in der Tabelle zu scrollen */
+    overflow-x: auto; /* Erzwingt den horizontalen Scrollbalken unten */
+    overflow-y: auto; /* Erzwingt den vertikalen Scrollbalken an der Seite */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Das eigentliche Excel-Tabellenkonstrukt */
+#excel-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.95rem; /* Perfekt lesbare Grundgröße */
+}
+
+/* Fixiert die Kopfzeile beim vertikalen Scrollen (Freeze Panes / Zeilen fixieren) */
+#excel-table th {
+    position: sticky;
+    top: 0;
+    background-color: #f1f3f4;
+    color: #333;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-right: 1px solid #dee2e6;
+    border-bottom: 2px solid #c5c7c9;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    text-align: left;
+    z-index: 2;
+}
+
+/* Die zweite Kopfzeile (Filterzeile) ebenfalls oben anheften */
+#header-filter-row th {
+    top: 39px; /* Sitzt exakt unter der Sortierzeile */
+    background-color: #f8f9fa;
+    padding: 6px 10px;
+    z-index: 2;
+}
+
+/* Styling für die Excel-Filter-Inputboxen */
+#header-filter-row input {
+    width: 100%;
+    padding: 5px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+#header-filter-row input:focus {
+    outline: none;
+    border-color: #0056b3;
+    background-color: #fff;
+}
+
+/* Tabellenzellen-Styling */
+#excel-table td {
+    padding: 8px 14px;
+    border-right: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    white-space: nowrap; /* Verhindert hässliche Zeilenumbrüche in Werten */
+    color: #495057;
+}
+
+/* Zebramuster für bessere Lesbarkeit langer Datenreihen */
+#excel-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+#excel-table tbody tr:hover {
+    background-color: #e8f0fe; /* Hellblaues Highlight beim Zeilen-Hover */
+}
+
+/* Zahlenwerte wie in Excel rechtsbündig ausrichten */
+.num-cell {
+    text-align: right;
+    font-family: 'Courier New', Courier, monospace; /* Erleichtert den visuellen Vergleich */
+    font-weight: 500;
+}
+
+/* Sortier-Pfeile */
+.sort-icon {
+    margin-left: 5px;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* ==========================================================================
+   MOBILGERÄTE OPTIMIERUNG (Smartphones & Tablets)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Schrift bewusst vergrößern, damit man auf dem Handy nicht zoomen muss */
+    #excel-table {
+        font-size: 1.05rem; 
+    }
+    
+    #excel-table td, #excel-table th {
+        padding: 12px 16px; /* Größere Touch-Flächen für Fingerbedienung */
+    }
+
+    .table-responsive-wrapper {
+        max-height: 50vh; /* Etwas kompakter auf mobilen Bildschirmen */
+    }
+}
